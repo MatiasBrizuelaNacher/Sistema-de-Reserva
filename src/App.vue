@@ -1,30 +1,40 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <v-app>
+    <v-app-bar>
+      <v-app-bar-title>Sistema de Reservas</v-app-bar-title>
+      <router-link to='/'>
+        <button class="btnTopBar">Home</button>
+      </router-link>
+      <v-divider vertical></v-divider>
+      <router-link to='/Reservas'>
+        <button class="btnTopBar">Reservas</button>
+      </router-link>
+    </v-app-bar>
+    <router-view/>
+  </v-app>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.btnTopBar{
+  height: 100%;
+  padding: 10px 16px;
+  min-width: 100px;
+  color: black;
 }
 
-nav {
-  padding: 30px;
+.btnTopBar:hover{
+  font-weight:bold;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
+<script>
+
+
+export default {
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+}
+</script>

@@ -1,0 +1,242 @@
+[
+    {
+        "name": "Sala Sol",
+        "capacity": 45,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Luna",
+        "capacity": 60,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Estrella",
+        "capacity": 30,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Horizonte",
+        "capacity": 55,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Aurora",
+        "capacity": 25,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Bosque",
+        "capacity": 80,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Río",
+        "capacity": 50,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Mar",
+        "capacity": 40,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Nube",
+        "capacity": 70,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Brisa",
+        "capacity": 20,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Montaña",
+        "capacity": 85,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Cumbre",
+        "capacity": 35,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Prisma",
+        "capacity": 60,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Rayo",
+        "capacity": 75,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Relámpago",
+        "capacity": 90,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Cascada",
+        "capacity": 50,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Lluvia",
+        "capacity": 65,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Viento",
+        "capacity": 35,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Tranquilidad",
+        "capacity": 40,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Fuego",
+        "capacity": 55,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Tierra",
+        "capacity": 30,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Espejo",
+        "capacity": 45,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Universo",
+        "capacity": 70,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Nebulosa",
+        "capacity": 85,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Galaxia",
+        "capacity": 25,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Cosmos",
+        "capacity": 50,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Eclipse",
+        "capacity": 90,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Fénix",
+        "capacity": 60,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Centella",
+        "capacity": 35,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Diamante",
+        "capacity": 40,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Cristal",
+        "capacity": 55,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Zafiro",
+        "capacity": 20,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Rubí",
+        "capacity": 45,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Amatista",
+        "capacity": 75,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Jade",
+        "capacity": 60,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Perla",
+        "capacity": 35,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Coral",
+        "capacity": 50,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Ópalo",
+        "capacity": 40,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Topacio",
+        "capacity": 85,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Onix",
+        "capacity": 55,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Esmeralda",
+        "capacity": 70,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Turquesa",
+        "capacity": 25,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Plata",
+        "capacity": 30,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Oro",
+        "capacity": 90,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Brillante",
+        "capacity": 45,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Arcoíris",
+        "capacity": 80,
+        "state": "Ocupado"
+    },
+    {
+        "name": "Sala Luz",
+        "capacity": 40,
+        "state": "Disponible"
+    },
+    {
+        "name": "Sala Obsidiana",
+        "capacity": 35,
+        "state": "Ocupado"
+    }
+]
