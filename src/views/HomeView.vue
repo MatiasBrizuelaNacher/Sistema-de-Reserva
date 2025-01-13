@@ -7,7 +7,8 @@
       <div class="containerTable">
         <v-data-table :headers="headers" :items="items" item-value="id" ></v-data-table>
       </div>
-      <ReservationForm></ReservationForm>
+      <ReservationForm :items="items"></ReservationForm>
+      <p>{{ name }}</p>
     </div>
   </v-main>  
 </template>
@@ -25,7 +26,7 @@ export default{
   },
   data(){
     return{
-      name:'',
+      name:'asd',
       //Tabla
       headers: [
           {title:'Sala', value: 'name'},

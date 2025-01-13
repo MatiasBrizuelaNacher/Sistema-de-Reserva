@@ -11,20 +11,20 @@
                 <v-card-text>
                     <v-row>
                         <v-col cols="6">
-                            <v-text-field label="First name"></v-text-field>
+                            <v-text-field label="Nombre"></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                            <v-text-field label="Last name"></v-text-field>
+                            <v-text-field label="Apellido"></v-text-field>
                         </v-col>  
                     </v-row>
                     <v-row>
                         <v-col cols="12">
-                            <v-text-field label="Email address" placeholder="johndoe@gmail.com" type="email"></v-text-field>
+                            <v-text-field label="Email" placeholder="johndoe@gmail.com" type="email"></v-text-field>
                         </v-col>
                     </v-row>
                     <v-row>
                         <v-col cols="12">
-                            <v-select v-model="location" :items="locations" label="Location"></v-select>
+                            <v-select v-model="salaSeleccionada" :items="salas" label="Seleccionar Sala"></v-select>
                         </v-col>
                     </v-row>
                     <v-row>
@@ -69,17 +69,13 @@ export default {
 components: {
 VTimePicker,
 },
-
-data: () => ({
-    locations: [
-    'top',
-    'bottom',
-    'start',
-    'end',
-    'center',
-    ],
-    location: 'end',
-}),
+props:['items'],
+data(){
+    return{
+        salas: this.items.map(salas => salas.name),
+        salaSeleccionada: '',
+    }
+}
 }
 </script>
 

@@ -31,6 +31,7 @@ export default{
     VDateInput,
   },
   props: ['modelValue'],
+  emits: ['update:modelValue'],
   data () {
       return{
       //Fomulario de Busqueda
@@ -55,12 +56,12 @@ export default{
         return this.modelValue
       },
       set(value){
+        console.log(value)
         this.$emit('update:modelValue', value);
       }
     }
   }
 }
-
 </script>
 
 <style>
