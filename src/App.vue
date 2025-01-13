@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar>
-      <v-app-bar-title>Sistema de Reservas</v-app-bar-title>
+      <v-app-bar-title class="TitlePag">Sistema de Reservas</v-app-bar-title>
       <router-link to='/'>
         <button class="btnTopBar">Home</button>
       </router-link>
@@ -24,6 +24,11 @@
 
 .btnTopBar:hover{
   font-weight:bold;
+}
+
+.TitlePag{
+  font-size: 20px; 
+  font-weight: bold;
 }
 
 </style>
