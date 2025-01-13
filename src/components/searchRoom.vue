@@ -5,59 +5,65 @@
           <v-container fluid>
             <v-row>
               <v-col cols="5">
-                <v-text-field :label="labelName" v-model="dataName" variant="solo" ></v-text-field>
+                <v-text-field :label="labelName" v-model="data.name" variant="solo" ></v-text-field>
               </v-col>
-              <v-col cols="3.5">
-                <v-text-field :label="labelCapacity" v-model="dataCapacity" variant="solo" type="number" ></v-text-field>
+              <v-col cols="2">
+                <v-text-field :label="labelCapacity" v-model="data.capacity" variant="solo" type="number" ></v-text-field>
               </v-col>
-              <v-col cols="3.5">
-                <v-date-input :label="labelDate" v-model="date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar"></v-date-input>
+              <v-col cols="2">
+                <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar"></v-date-input>
               </v-col>
-              <v-col cols="auto" class="btnLimpiar">
+              <v-col cols="2">
+                <v-text-field variant="solo" v-model="time" :active="menu" :label="labelTime" prepend-inner-icon="mdi-clock-time-four-outline" readonly>
+                  <v-menu v-model="menu" :close-on-content-click="false" activator="parent" transition="scale-transition">
+                    <v-time-picker v-if="menu" v-model="time" full-width></v-time-picker>
+                  </v-menu>
+                </v-text-field>
+              </v-col>
+              <v-col cols="1" class="btnLimpiar">
                 <v-btn @click="cleanData" color="surface-variant">Limpiar</v-btn>
               </v-col>
+
             </v-row>
           </v-container>
         </v-form> 
-        <p>{{ dataName }}</p>
     </v-card>
 </template>
 
 <script>
 import { VDateInput } from 'vuetify/labs/VDateInput'
+import { VTimePicker } from 'vuetify/labs/VTimePicker'
 
 export default{
     components: {
     VDateInput,
+    VTimePicker,
   },
   props: ['modelValue'],
   emits: ['update:modelValue'],
   data () {
       return{
+      time:null,
+      menu:false,
       //Fomulario de Busqueda
       labelName:'Nombre de la Sala',
-      dataCapacity: null,
       labelCapacity:'Capacidad',
-      date:null,
       labelDate:'Fecha',
-      fechaSeleccionada: null,
+      labelTime:'Hora',
       }
   },
   methods:{
       cleanData(){
-      this.dataName=''
-      this.dataCapacity=null
-      this.date=null
+      this.data = { name: '', capacity: null, date: null };
     },
   },
   computed:{
-    dataName:{
+    data:{
       get(){
         return this.modelValue
       },
       set(value){
-        console.log(value)
-        this.$emit('update:modelValue', value);
+        this.$emit('update:modelValue', value)
       }
     }
   }

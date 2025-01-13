@@ -2,22 +2,20 @@
   <v-main>
     <div class="container">
       <div>
-        <SearchRoom :v-model="name"></SearchRoom>
+        <SearchRoom v-model="dataSearch"></SearchRoom>
       </div>
       <div class="containerTable">
-        <v-data-table :headers="headers" :items="items" item-value="id" ></v-data-table>
+        <v-data-table :search="dataSearch.name" :headers="headers" :items="items" item-value="id" ></v-data-table>
       </div>
       <ReservationForm :items="items"></ReservationForm>
-      <p>{{ name }}</p>
     </div>
-  </v-main>  
+  </v-main> 
 </template>
 
 <script>
 import SearchRoom from '@/components/searchRoom.vue';
 import salaInfo from '../salaInfo.json'
 import ReservationForm from '@/components/reservationForm.vue';
-
 
 export default{
   components:{
@@ -26,15 +24,14 @@ export default{
   },
   data(){
     return{
-      name:'asd',
+      dataSearch:{name:'',capacity:null,date:null},
       //Tabla
       headers: [
           {title:'Sala', value: 'name'},
           {title:'Capacidad', value: 'capacity'},
           {title:'Estado', value: 'state'},
-          {title:'Reservar', value: 'actions', sortable: false}
         ],
-        items: salaInfo
+        items:salaInfo
     }
   },
 }

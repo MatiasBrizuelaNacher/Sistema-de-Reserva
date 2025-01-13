@@ -6,7 +6,7 @@
         <button class="btnTopBar">Home</button>
       </router-link>
       <v-divider vertical></v-divider>
-      <router-link to='/Reservas'>
+      <router-link to='/reservas'>
         <button class="btnTopBar">Reservas</button>
       </router-link>
     </v-app-bar>
