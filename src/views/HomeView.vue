@@ -5,7 +5,7 @@
         <SearchRoom v-model="dataSearch"></SearchRoom>
       </div>
       <div class="containerTable">
-        <v-data-table :search="dataSearch.name" :headers="headers" :items="items" item-value="id" ></v-data-table>
+        <v-data-table :headers="headers" :items="items" item-value="id" ></v-data-table>
       </div>
       <ReservationForm :items="items"></ReservationForm>
     </div>
@@ -14,7 +14,7 @@
 
 <script>
 import SearchRoom from '@/components/searchRoom.vue';
-import salaInfo from '../salaInfo.json'
+import salaInfo from '../salaInfoV2.json'
 import ReservationForm from '@/components/reservationForm.vue';
 
 export default{
@@ -24,18 +24,34 @@ export default{
   },
   data(){
     return{
-      dataSearch:{name:'',capacity:null,date:null},
+      dataSearch:{name:'',capacity:null,date:null,time:null},
       //Tabla
       headers: [
           {title:'Sala', value: 'name'},
           {title:'Capacidad', value: 'capacity'},
           {title:'Estado', value: 'state'},
         ],
-        items:salaInfo
     }
   },
+  computed:{
+    items: {
+      get(){
+        let newInfo=salaInfo.filter(item => item.state='Disponible')
+        if (this.dataSearch.name==='' && this.dataSearch.capacity===null && this.dataSearch.date===null && this.dataSearch.time ===null) {
+          return newInfo
+        }else{
+          if (this.dataSearch.name !== '') {
+            newInfo = newInfo.filter(item => item.name.toLowerCase().includes(this.dataSearch.name.toLowerCase()))
+          }
+          if (this.dataSearch.capacity !== null){
+            newInfo = newInfo.filter(item => item.capacity >= this.dataSearch.capacity)
+          }
+          return newInfo
+        }
+      }
+    },
+  }
 }
-
 </script>
 
 <style>

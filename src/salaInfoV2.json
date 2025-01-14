@@ -1,0 +1,194 @@
+[
+    {
+        "name": "Sala Sol",
+        "capacity": 45
+    },
+    {
+        "name": "Sala Luna",
+        "capacity": 60
+    },
+    {
+        "name": "Sala Estrella",
+        "capacity": 30
+    },
+    {
+        "name": "Sala Horizonte",
+        "capacity": 55
+    },
+    {
+        "name": "Sala Aurora",
+        "capacity": 25
+    },
+    {
+        "name": "Sala Bosque",
+        "capacity": 80
+    },
+    {
+        "name": "Sala Río",
+        "capacity": 50
+    },
+    {
+        "name": "Sala Mar",
+        "capacity": 40
+    },
+    {
+        "name": "Sala Nube",
+        "capacity": 70
+    },
+    {
+        "name": "Sala Brisa",
+        "capacity": 20
+    },
+    {
+        "name": "Sala Montaña",
+        "capacity": 85
+    },
+    {
+        "name": "Sala Cumbre",
+        "capacity": 35
+    },
+    {
+        "name": "Sala Prisma",
+        "capacity": 60
+    },
+    {
+        "name": "Sala Rayo",
+        "capacity": 75
+    },
+    {
+        "name": "Sala Relámpago",
+        "capacity": 90
+    },
+    {
+        "name": "Sala Cascada",
+        "capacity": 50
+    },
+    {
+        "name": "Sala Lluvia",
+        "capacity": 65
+    },
+    {
+        "name": "Sala Viento",
+        "capacity": 35
+    },
+    {
+        "name": "Sala Tranquilidad",
+        "capacity": 40
+    },
+    {
+        "name": "Sala Fuego",
+        "capacity": 55
+    },
+    {
+        "name": "Sala Tierra",
+        "capacity": 30
+    },
+    {
+        "name": "Sala Espejo",
+        "capacity": 45
+    },
+    {
+        "name": "Sala Universo",
+        "capacity": 70
+    },
+    {
+        "name": "Sala Nebulosa",
+        "capacity": 85
+    },
+    {
+        "name": "Sala Galaxia",
+        "capacity": 25
+    },
+    {
+        "name": "Sala Cosmos",
+        "capacity": 50
+    },
+    {
+        "name": "Sala Eclipse",
+        "capacity": 90
+    },
+    {
+        "name": "Sala Fénix",
+        "capacity": 60
+    },
+    {
+        "name": "Sala Centella",
+        "capacity": 35
+    },
+    {
+        "name": "Sala Diamante",
+        "capacity": 40
+    },
+    {
+        "name": "Sala Cristal",
+        "capacity": 55
+    },
+    {
+        "name": "Sala Zafiro",
+        "capacity": 20
+    },
+    {
+        "name": "Sala Rubí",
+        "capacity": 45
+    },
+    {
+        "name": "Sala Amatista",
+        "capacity": 75
+    },
+    {
+        "name": "Sala Jade",
+        "capacity": 60
+    },
+    {
+        "name": "Sala Perla",
+        "capacity": 35
+    },
+    {
+        "name": "Sala Coral",
+        "capacity": 50
+    },
+    {
+        "name": "Sala Ópalo",
+        "capacity": 40
+    },
+    {
+        "name": "Sala Topacio",
+        "capacity": 85
+    },
+    {
+        "name": "Sala Onix",
+        "capacity": 55
+    },
+    {
+        "name": "Sala Esmeralda",
+        "capacity": 70
+    },
+    {
+        "name": "Sala Turquesa",
+        "capacity": 25
+    },
+    {
+        "name": "Sala Plata",
+        "capacity": 30
+    },
+    {
+        "name": "Sala Oro",
+        "capacity": 90
+    },
+    {
+        "name": "Sala Brillante",
+        "capacity": 45
+    },
+    {
+        "name": "Sala Arcoíris",
+        "capacity": 80
+    },
+    {
+        "name": "Sala Luz",
+        "capacity": 40
+    },
+    {
+        "name": "Sala Obsidiana",
+        "capacity": 35
+    }
+]
