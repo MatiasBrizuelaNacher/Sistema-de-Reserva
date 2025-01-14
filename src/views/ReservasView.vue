@@ -21,7 +21,7 @@ import salaInfo from '../salaInfo.json'
 export default{
   data(){
     return{
-      dataSearch:{name:'',capacity:null,date:null},
+      dataSearch:{name:'',capacity:null, date: this.$store.state.now, time:this.$store.state.now.getHours() +":00"},
       //Tabla
       headers: [
         {title:'Sala', value: 'name'},

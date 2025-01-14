@@ -14,8 +14,9 @@
 
 <script>
 import SearchRoom from '@/components/searchRoom.vue';
-import salaInfo from '../salaInfoV2.json'
+import salaInfo from '../salaInfo.json'
 import ReservationForm from '@/components/reservationForm.vue';
+import salaReservada from '../salaReservada.json'
 
 export default{
   components:{
@@ -24,7 +25,7 @@ export default{
   },
   data(){
     return{
-      dataSearch:{name:'',capacity:null,date:null,time:null},
+      dataSearch:{name:'',capacity:null, date: this.$store.state.now, time:this.$store.state.now.getHours() +":00"},
       //Tabla
       headers: [
           {title:'Sala', value: 'name'},
@@ -36,7 +37,20 @@ export default{
   computed:{
     items: {
       get(){
-        let newInfo=salaInfo.filter(item => item.state='Disponible')
+        let newInfo=[]
+        salaInfo.forEach(item => {
+          //Cambio el fomato
+          const month = String(this.dataSearch.date.getMonth() + 1).padStart(2, '0');  // Mes (enero es 0)
+          const day = String(this.dataSearch.date.getDate()).padStart(2, '0');  // Día del mes
+          const year = this.dataSearch.date.getFullYear();  // Año
+          const date = `${month}/${day}/${year}`;
+
+          //Busca una coincidencia entre el nombre,fecha y hora de la salas reservas con la del item, devuelve true si la encuentra
+          const isReserved = salaReservada.some(reserva =>reserva.nameRoom === item.name && reserva.date === date && this.dataSearch.time === reserva.time)
+
+          item.state = isReserved ? "Ocupado" : "Disponible"
+          newInfo.push(item)
+        })
         if (this.dataSearch.name==='' && this.dataSearch.capacity===null && this.dataSearch.date===null && this.dataSearch.time ===null) {
           return newInfo
         }else{
@@ -50,7 +64,7 @@ export default{
         }
       }
     },
-  }
+  },
 }
 </script>
 

@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "nameRoom": "Sala Sol",
+        "firtName": "Matias",
+        "lastName": "Brizuela",
+        "date": "01/14/2025",
+        "time": "17:00"
+    },
+    {
+        "id": 2,
+        "nameRoom": "Sala Luna",
+        "firtName": "Matias",
+        "lastName": "Brizuela",
+        "date": "01/14/2025",
+        "time": "17:00"
+    }
+]

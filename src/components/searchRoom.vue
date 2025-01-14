@@ -14,16 +14,15 @@
                 <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar"></v-date-input>
               </v-col>
               <v-col cols="2">
-                <v-text-field variant="solo" v-model="time" :active="menu" :label="labelTime" prepend-inner-icon="mdi-clock-time-four-outline" readonly>
+                <v-text-field variant="solo" v-model="data.time" :active="menu" :label="labelTime" prepend-inner-icon="mdi-clock-time-four-outline" readonly>
                   <v-menu v-model="menu" :close-on-content-click="false" activator="parent" transition="scale-transition">
-                    <v-time-picker v-if="menu" v-model="time" full-width></v-time-picker>
+                    <v-time-picker  v-if="menu" v-model="data.time" full-width format="24hr"></v-time-picker>
                   </v-menu>
                 </v-text-field>
               </v-col>
               <v-col cols="1" class="btnLimpiar">
                 <v-btn @click="cleanData" color="surface-variant">Limpiar</v-btn>
               </v-col>
-
             </v-row>
           </v-container>
         </v-form> 
@@ -34,6 +33,7 @@
 import { VDateInput } from 'vuetify/labs/VDateInput'
 import { VTimePicker } from 'vuetify/labs/VTimePicker'
 
+
 export default{
     components: {
     VDateInput,
@@ -43,7 +43,6 @@ export default{
   emits: ['update:modelValue'],
   data () {
       return{
-      time:null,
       menu:false,
       //Fomulario de Busqueda
       labelName:'Nombre de la Sala',
@@ -54,7 +53,8 @@ export default{
   },
   methods:{
       cleanData(){
-      this.data = { name: '', capacity: null, date: null };
+      console.log(typeof this.time)
+      this.data = { name: '', capacity: null, date: this.$store.state.now,time:this.$store.state.now.getHours() +":00"}
     },
   },
   computed:{
