@@ -39,17 +39,17 @@ export default{
       get(){
         let newInfo=[]
         salaInfo.forEach(item => {
-          //Cambio el fomato
-          const month = String(this.dataSearch.date.getMonth() + 1).padStart(2, '0');  // Mes (enero es 0)
-          const day = String(this.dataSearch.date.getDate()).padStart(2, '0');  // Día del mes
-          const year = this.dataSearch.date.getFullYear();  // Año
-          const date = `${month}/${day}/${year}`;
+        //Cambio el fomato
+        const month = String(this.dataSearch.date.getMonth() + 1).padStart(2, '0');  // Mes (enero es 0)
+        const day = String(this.dataSearch.date.getDate()).padStart(2, '0');  // Día del mes
+        const year = this.dataSearch.date.getFullYear();  // Año
+        const date = `${month}/${day}/${year}`;
 
-          //Busca una coincidencia entre el nombre,fecha y hora de la salas reservas con la del item, devuelve true si la encuentra
-          const isReserved = salaReservada.some(reserva =>reserva.nameRoom === item.name && reserva.date === date && this.dataSearch.time === reserva.time)
+        //Busca una coincidencia entre el nombre,fecha y hora de la salas reservas con la del item, devuelve true si la encuentra
+        const isReserved = salaReservada.some(reserva =>reserva.nameRoom === item.name && reserva.date === date && this.dataSearch.time === reserva.time)
 
-          item.state = isReserved ? "Ocupado" : "Disponible"
-          newInfo.push(item)
+        item.state = isReserved ? "Ocupado" : "Disponible"
+        newInfo.push(item)
         })
         if (this.dataSearch.name==='' && this.dataSearch.capacity===null && this.dataSearch.date===null && this.dataSearch.time ===null) {
           return newInfo

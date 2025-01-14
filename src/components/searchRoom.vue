@@ -16,7 +16,14 @@
               <v-col cols="2">
                 <v-text-field variant="solo" v-model="data.time" :active="menu" :label="labelTime" prepend-inner-icon="mdi-clock-time-four-outline" readonly>
                   <v-menu v-model="menu" :close-on-content-click="false" activator="parent" transition="scale-transition">
-                    <v-time-picker  v-if="menu" v-model="data.time" full-width format="24hr"></v-time-picker>
+                    <v-card>
+                      <v-time-picker  v-model="time" full-width format="24hr"></v-time-picker>
+                      <v-card-actions>
+                        <v-spacer/>
+                        <v-btn @click="closeCancel" :disabled="enableBtn" variant="text">Cancelar</v-btn>
+                        <v-btn @click="closeOk" :disabled="enableBtn" variant="text">OK</v-btn>
+                      </v-card-actions>
+                    </v-card>
                   </v-menu>
                 </v-text-field>
               </v-col>
@@ -43,6 +50,7 @@ export default{
   emits: ['update:modelValue'],
   data () {
       return{
+      time:'',
       menu:false,
       //Fomulario de Busqueda
       labelName:'Nombre de la Sala',
@@ -56,6 +64,15 @@ export default{
       console.log(typeof this.time)
       this.data = { name: '', capacity: null, date: this.$store.state.now,time:this.$store.state.now.getHours() +":00"}
     },
+    closeCancel(){
+      this.time=''
+      this.menu=false
+    },
+    closeOk(){
+      this.data.time=this.time
+      this.time=''
+      this.menu=false
+    },
   },
   computed:{
     data:{
@@ -65,9 +82,15 @@ export default{
       set(value){
         this.$emit('update:modelValue', value)
       }
+    },
+    enableBtn:{
+      get(){
+        return this.time !== '' ? false : true
+      }
     }
   }
 }
+
 </script>
 
 <style>
