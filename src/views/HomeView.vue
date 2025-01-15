@@ -39,22 +39,22 @@ export default{
       let newInfo = [];
       salaInfo.forEach((item) => {
         // Cambio el formato
-        const date = this.changeFormat(this.dataSearch.date);
+        const date = this.changeFormat(this.dataSearch.date)
 
         // Conversión del tiempo
-        const timeInitTotal = this.changeTimeNumber(this.dataSearch.timeInit);
-        const timeEndTotal = this.changeTimeNumber(this.dataSearch.timeEnd);
+        const timeInitTotal = this.changeTimeNumber(this.dataSearch.timeInit)
+        const timeEndTotal = this.changeTimeNumber(this.dataSearch.timeEnd)
 
         // Busca una coincidencia entre el nombre, fecha y hora de las salas reservadas con la del item
         const isReserved = salaReservada.some((reserva) => {
-          const timeInitTotalReserved = this.changeTimeNumber(reserva.timeInit);
-          const timeEndTotalReserved = this.changeTimeNumber(reserva.timeEnd);
-          return (reserva.nameRoom === item.name && reserva.date === date && timeInitTotal < timeEndTotalReserved && timeEndTotal > timeInitTotalReserved);
+          const timeInitTotalReserved = this.changeTimeNumber(reserva.timeInit)
+          const timeEndTotalReserved = this.changeTimeNumber(reserva.timeEnd)
+          return (reserva.nameRoom === item.name && reserva.date === date && timeInitTotal < timeEndTotalReserved && timeEndTotal > timeInitTotalReserved)
         })
 
-        item.state = isReserved ? "Ocupado" : "Disponible";
+        item.state = isReserved ? "Ocupado" : "Disponible"
         newInfo.push(item)
-      });
+      })
 
       if (this.dataSearch.name === '' && this.dataSearch.capacity === null) {
         return newInfo

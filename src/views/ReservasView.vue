@@ -17,7 +17,7 @@
 <script>
 import SearchRoom from '@/components/searchRoom.vue';
 import salaInfo from '../salaInfo.json'
-import salasReservadas from '../salaReservada.json'
+import salaReservada from '../salaReservada.json'
 
 export default{
   components:{
@@ -37,23 +37,35 @@ export default{
       ],
     }
   },
+  methods:{
+    changeFormat(date) {
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const year = date.getFullYear()
+      return `${month}/${day}/${year}`
+    }
+  },
   computed:{
     items(){
-      let newInfo = salasReservadas.map(reservacion => {
+      let newInfo = salaReservada.map(reservacion => {
         let room = salaInfo.find(sala => sala.id === reservacion.id)
         reservacion.nameRoom = room.name
         reservacion.capacity = room.capacity
         reservacion.timeTotal= `${reservacion.timeInit}-${reservacion.timeEnd}`
         return reservacion
     })
-    if (this.dataSearch.name === '' && this.dataSearch.capacity === null) {
+    if (this.dataSearch.name === '' && this.dataSearch.capacity === null && this.dataSearch.date === null) {
         return newInfo
       } else {
         if (this.dataSearch.name !== '') {
-          newInfo = newInfo.filter((item) => item.name.toLowerCase().includes(this.dataSearch.name.toLowerCase()))
+          newInfo = newInfo.filter((item) => item.nameRoom.toLowerCase().includes(this.dataSearch.name.toLowerCase()))
         }
         if (this.dataSearch.capacity !== null) {
           newInfo = newInfo.filter((item) => item.capacity >= this.dataSearch.capacity)
+        }
+        if (this.dataSearch.date !== null) {
+          let date = this.changeFormat(this.dataSearch.date)
+          newInfo = newInfo.filter((item) => item.date >= date)
         }
         return newInfo
       }   

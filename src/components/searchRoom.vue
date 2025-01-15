@@ -79,8 +79,11 @@ export default{
   },
   methods:{
       cleanData(){
-      console.log(typeof this.time)
-      this.data = { name: '', capacity: null, date: this.$store.state.now, timeInit:this.$store.state.now.getHours() +":00", timeEnd: (this.$store.state.now.getHours()+1) +":00"}
+      if(this.enableTime){
+        this.data = { name: '', capacity: null, date: this.$store.state.now, timeInit:this.$store.state.now.getHours() +":00", timeEnd: (this.$store.state.now.getHours()+1) +":00"}
+      }else{
+        this.data = { name: '', capacity: null}
+      }      
     },
     closeCancel(){
       this.timeInit=''
