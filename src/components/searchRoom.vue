@@ -4,7 +4,7 @@
         <v-form>
           <v-container fluid>
             <v-row>
-              <v-col cols="5">
+              <v-col cols="3">
                 <v-text-field :label="labelName" v-model="data.name" variant="solo" ></v-text-field>
               </v-col>
               <v-col cols="2">
@@ -14,10 +14,24 @@
                 <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar"></v-date-input>
               </v-col>
               <v-col cols="2">
-                <v-text-field variant="solo" v-model="data.time" :active="menu" :label="labelTime" prepend-inner-icon="mdi-clock-time-four-outline" readonly>
+                <v-text-field variant="solo" v-model="data.timeInit" :active="menu" :label="labelTimeInit" prepend-inner-icon="mdi-clock-time-four-outline" readonly :disabled="enableTimePicker">
                   <v-menu v-model="menu" :close-on-content-click="false" activator="parent" transition="scale-transition">
                     <v-card>
-                      <v-time-picker  v-model="time" full-width format="24hr"></v-time-picker>
+                      <v-time-picker v-model="timeInit" full-width format="24hr"></v-time-picker>
+                      <v-card-actions>
+                        <v-spacer/>
+                        <v-btn @click="closeCancel" :disabled="enableBtn" variant="text" >Cancelar</v-btn>
+                        <v-btn @click="closeOk" :disabled="enableBtn" variant="text">OK</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-menu>
+                </v-text-field>
+              </v-col>
+              <v-col cols="2">
+                <v-text-field variant="solo" v-model="data.timeEnd" :active="menu2" :label="labelTimeEnd" prepend-inner-icon="mdi-clock-time-four-outline" :disabled="enableTimePicker">
+                  <v-menu v-model="menu2" :close-on-content-click="false" activator="parent" transition="scale-transition">
+                    <v-card>
+                      <v-time-picker v-model="timeEnd" full-width format="24hr"></v-time-picker>
                       <v-card-actions>
                         <v-spacer/>
                         <v-btn @click="closeCancel" :disabled="enableBtn" variant="text">Cancelar</v-btn>
@@ -46,32 +60,41 @@ export default{
     VDateInput,
     VTimePicker,
   },
-  props: ['modelValue'],
+  props: ['modelValue','enableTime'],
   emits: ['update:modelValue'],
   data () {
       return{
-      time:'',
+      //Time Picker      
+      timeInit:'',
+      timeEnd:'',
       menu:false,
+      menu2:false,
       //Fomulario de Busqueda
       labelName:'Nombre de la Sala',
       labelCapacity:'Capacidad',
       labelDate:'Fecha',
-      labelTime:'Hora',
+      labelTimeInit:'Hora de Inicio',
+      labelTimeEnd:'Hora de Finalizacion',
       }
   },
   methods:{
       cleanData(){
       console.log(typeof this.time)
-      this.data = { name: '', capacity: null, date: this.$store.state.now,time:this.$store.state.now.getHours() +":00"}
+      this.data = { name: '', capacity: null, date: this.$store.state.now, timeInit:this.$store.state.now.getHours() +":00", timeEnd: (this.$store.state.now.getHours()+1) +":00"}
     },
     closeCancel(){
-      this.time=''
+      this.timeInit=''
+      this.timeEnd=''
       this.menu=false
+      this.menu2=false
     },
     closeOk(){
-      this.data.time=this.time
-      this.time=''
+      if(this.timeInit !== '') this.data.timeInit=this.timeInit
+      if(this.timeEnd !== '') this.data.timeEnd=this.timeEnd
+      this.timeInit=''
+      this.timeEnd=''
       this.menu=false
+      this.menu2=false
     },
   },
   computed:{
@@ -86,6 +109,11 @@ export default{
     enableBtn:{
       get(){
         return this.time !== '' ? false : true
+      }
+    },
+    enableTimePicker:{
+      get(){
+        return !this.enableTime
       }
     }
   }

@@ -1,23 +1,23 @@
 [
     {
         "id": 1,
-        "nameRoom": "Sala Sol",
         "name": "Matias, Brizuela",
         "date": "01/14/2025",
-        "time": "17:00"
+        "timeInit": "17:00",
+        "timeEnd": "18:00"
     },
     {
         "id": 2,
-        "nameRoom": "Sala Luna",
         "name": "Matias, Brizuela",
         "date": "01/14/2025",
-        "time": "17:00"
+        "timeInit": "17:00",
+        "timeEnd": "18:00"
     },
     {
         "id": 2,
-        "nameRoom": "Sala Luna",
         "name": "Matias, Brizuela",
         "date": "01/14/2025",
-        "time": "20:00"
+        "timeInit": "20:00",
+        "timeEnd": "21:00"
     }
 ]
