@@ -111,7 +111,7 @@ export default{
     },
     enableBtn:{
       get(){
-        return this.time !== '' ? false : true
+        return this.timeInit !== '' || this.timeEnd !== ''? false : true
       }
     },
     enableTimePicker:{

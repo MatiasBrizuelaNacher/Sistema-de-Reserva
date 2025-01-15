@@ -7,16 +7,16 @@
       <div class="containerTable">
         <v-data-table :headers="headers" :items="items" item-value="id" ></v-data-table>
       </div>
-      <ReservationForm :items="items"></ReservationForm>
+      <ReservationForm :items="items" :info="dataSearch" :changeFormat="changeFormat"></ReservationForm>
     </div>
   </v-main> 
 </template>
 
 <script>
-import SearchRoom from '@/components/searchRoom.vue';
-import salaInfo from '../salaInfo.json'
-import ReservationForm from '@/components/reservationForm.vue';
-import salaReservada from '../salaReservada.json'
+import SearchRoom from '@/components/searchRoom.vue'
+import ReservationForm from '@/components/reservationForm.vue'
+let roomsInfo = JSON.parse(localStorage.getItem('roomsInfo'))
+let roomsReserved = JSON.parse(localStorage.getItem('roomsReserved'))
 
 export default{
   components:{
@@ -37,7 +37,7 @@ export default{
   computed: {
     items() {
       let newInfo = [];
-      salaInfo.forEach((item) => {
+      roomsInfo.forEach((item) => {
         // Cambio el formato
         const date = this.changeFormat(this.dataSearch.date)
 
@@ -46,7 +46,7 @@ export default{
         const timeEndTotal = this.changeTimeNumber(this.dataSearch.timeEnd)
 
         // Busca una coincidencia entre el nombre, fecha y hora de las salas reservadas con la del item
-        const isReserved = salaReservada.some((reserva) => {
+        const isReserved = roomsReserved.some((reserva) => {
           const timeInitTotalReserved = this.changeTimeNumber(reserva.timeInit)
           const timeEndTotalReserved = this.changeTimeNumber(reserva.timeEnd)
           return (reserva.nameRoom === item.name && reserva.date === date && timeInitTotal < timeEndTotalReserved && timeEndTotal > timeInitTotalReserved)

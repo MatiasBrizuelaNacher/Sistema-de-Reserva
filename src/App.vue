@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar>
       <v-app-bar-title class="TitlePag">Sistema de Reservas</v-app-bar-title>
-      <router-link to='/'>
+      <router-link to='/' :changeFormat="changeFormat">
         <button class="btnTopBar">Home</button>
       </router-link>
       <v-divider vertical></v-divider>
@@ -36,10 +36,13 @@
 
 
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
+  methods:{
+    changeFormat(date) {
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const year = date.getFullYear()
+      return `${month}/${day}/${year}`
+    }
+  }
 }
 </script>

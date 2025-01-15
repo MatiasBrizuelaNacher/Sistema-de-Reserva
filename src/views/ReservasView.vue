@@ -3,7 +3,7 @@
     <div class="container">
       <SearchRoom v-model="dataSearch" :enableTime="false"></SearchRoom>
       <div class="containerTable">
-          <v-data-table :headers="headers" :items="items" item-value="id" >
+          <v-data-table :headers="headers" :items="items" item-value="idReservation" >
             <template v-slot:[`item.select`]="{ item }">                                  <!-- Revisar v-slot -->
               <v-checkbox-btn @click="item.select = !item.select"></v-checkbox-btn>
             </template>
@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import SearchRoom from '@/components/searchRoom.vue';
-import salaInfo from '../salaInfo.json'
-import salaReservada from '../salaReservada.json'
+import SearchRoom from '@/components/searchRoom.vue'
+let roomsInfo = JSON.parse(localStorage.getItem('roomsInfo'))
+let roomsReserved = JSON.parse(localStorage.getItem('roomsReserved'))
 
 export default{
   components:{
@@ -29,6 +29,7 @@ export default{
       //Tabla
       headers: [
         {title:'Reservante', value: 'name'},
+        {title:'Email',value: 'email'},
         {title:'Sala', value: 'nameRoom'},
         {title:'Capacidad', value: 'capacity'},
         {title:'Fecha', value: 'date'},
@@ -47,8 +48,9 @@ export default{
   },
   computed:{
     items(){
-      let newInfo = salaReservada.map(reservacion => {
-        let room = salaInfo.find(sala => sala.id === reservacion.id)
+      //Creo un nuevo array con agregando propiedades a los objetos
+      let newInfo = roomsReserved.map(reservacion => {
+        let room = roomsInfo.find(sala => sala.id === reservacion.id)
         reservacion.nameRoom = room.name
         reservacion.capacity = room.capacity
         reservacion.timeTotal= `${reservacion.timeInit}-${reservacion.timeEnd}`
@@ -65,7 +67,7 @@ export default{
         }
         if (this.dataSearch.date !== null) {
           let date = this.changeFormat(this.dataSearch.date)
-          newInfo = newInfo.filter((item) => item.date >= date)
+          newInfo = newInfo.filter((item) => item.date === date)
         }
         return newInfo
       }   
