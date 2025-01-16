@@ -23,6 +23,7 @@ export default{
     SearchRoom,
     ReservationForm
   },
+  props:['changeFormat', 'changeTimeNumber'],
   data(){
     return{
       dataSearch:{name:'',capacity:null, date: this.$store.state.now, timeInit:this.$store.state.now.getHours() +":00", timeEnd: (this.$store.state.now.getHours()+1) +":00"},
@@ -56,6 +57,7 @@ export default{
         newInfo.push(item)
       })
 
+      //Filtrado
       if (this.dataSearch.name === '' && this.dataSearch.capacity === null) {
         return newInfo
       } else {
@@ -67,18 +69,6 @@ export default{
         }
         return newInfo
       }
-    },
-  },
-  methods: {
-    changeFormat(date) {
-      const month = String(date.getMonth() + 1).padStart(2, '0')
-      const day = String(date.getDate()).padStart(2, '0')
-      const year = date.getFullYear()
-      return `${month}/${day}/${year}`
-    },
-    changeTimeNumber(time) {
-      const [hour, minute] = time.split(':').map(Number)
-      return hour * 60 + minute
     },
   },
 }

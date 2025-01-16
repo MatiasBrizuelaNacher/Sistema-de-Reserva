@@ -4,7 +4,7 @@
             <v-btn v-bind="activatorProps" text="Formilario de Reserva" color="surface-variant"></v-btn>
         </template>
 
-        <template>
+        <template v-slot:default="{ isActive }">
             <v-card>
                 <v-card-title>Formulario de Reserva</v-card-title>
                 <v-divider></v-divider>
@@ -31,7 +31,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn @click="isActive.value = false" color="surface-variant">Cancelar</v-btn>
-                    <v-btn @click="dialog = false" color="surface-variant">Aceptar</v-btn>
+                    <v-btn @click="addReservation" color="surface-variant">Aceptar</v-btn>
                 </v-card-actions>
             </v-card>
         </template>

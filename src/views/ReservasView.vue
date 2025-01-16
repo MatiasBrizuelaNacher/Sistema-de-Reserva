@@ -23,6 +23,7 @@ export default{
   components:{
     SearchRoom
   },
+  props:['changeFormat'],
   data(){
     return{
       dataSearch:{name:'',capacity:null, date: this.$store.state.now},
@@ -38,17 +39,9 @@ export default{
       ],
     }
   },
-  methods:{
-    changeFormat(date) {
-      const month = String(date.getMonth() + 1).padStart(2, '0')
-      const day = String(date.getDate()).padStart(2, '0')
-      const year = date.getFullYear()
-      return `${month}/${day}/${year}`
-    }
-  },
   computed:{
     items(){
-      //Creo un nuevo array con agregando propiedades a los objetos
+      //Creo un nuevo array agregando propiedades a los objetos
       let newInfo = roomsReserved.map(reservacion => {
         let room = roomsInfo.find(sala => sala.id === reservacion.id)
         reservacion.nameRoom = room.name
