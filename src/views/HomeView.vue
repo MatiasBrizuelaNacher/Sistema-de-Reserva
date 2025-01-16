@@ -15,8 +15,6 @@
 <script>
 import SearchRoom from '@/components/searchRoom.vue'
 import ReservationForm from '@/components/reservationForm.vue'
-let roomsInfo = JSON.parse(localStorage.getItem('roomsInfo'))
-let roomsReserved = JSON.parse(localStorage.getItem('roomsReserved'))
 
 export default{
   components:{
@@ -26,7 +24,7 @@ export default{
   props:['changeFormat', 'changeTimeNumber'],
   data(){
     return{
-      dataSearch:{name:'',capacity:null, date: this.$store.state.now, timeInit:this.$store.state.now.getHours() +":00", timeEnd: (this.$store.state.now.getHours()+1) +":00"},
+      dataSearch:{name:'',capacity:null, date: this.$store.getters.getDate, timeInit:this.$store.getters.getDate.getHours() +":00", timeEnd: (this.$store.getters.getDate.getHours()+1) +":00"},
       // Tabla
       headers: [
         { title: 'Sala', value: 'name' },
@@ -37,8 +35,10 @@ export default{
   },
   computed: {
     items() {
-      let newInfo = [];
-      roomsInfo.forEach((item) => {
+      console.log(this.$store.getters.getRoomsInfo)
+      console.log(this.$store.getters.getRoomsReserved)
+      let newInfo = []
+      this.$store.getters.getRoomsInfo.forEach((item) => {
         // Cambio el formato
         const date = this.changeFormat(this.dataSearch.date)
 
@@ -47,13 +47,14 @@ export default{
         const timeEndTotal = this.changeTimeNumber(this.dataSearch.timeEnd)
 
         // Busca una coincidencia entre el nombre, fecha y hora de las salas reservadas con la del item
-        const isReserved = roomsReserved.some((reserva) => {
+        const isReserved = this.$store.getters.getRoomsReserved.some((reserva) => {
           const timeInitTotalReserved = this.changeTimeNumber(reserva.timeInit)
           const timeEndTotalReserved = this.changeTimeNumber(reserva.timeEnd)
           return (reserva.nameRoom === item.name && reserva.date === date && timeInitTotal < timeEndTotalReserved && timeEndTotal > timeInitTotalReserved)
         })
 
         item.state = isReserved ? "Ocupado" : "Disponible"
+        console.log(isReserved)
         newInfo.push(item)
       })
 
@@ -67,6 +68,7 @@ export default{
         if (this.dataSearch.capacity !== null) {
           newInfo = newInfo.filter((item) => item.capacity >= this.dataSearch.capacity)
         }
+        console.log(newInfo)
         return newInfo
       }
     },

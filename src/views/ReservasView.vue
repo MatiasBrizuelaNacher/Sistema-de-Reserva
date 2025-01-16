@@ -5,19 +5,17 @@
       <div class="containerTable">
           <v-data-table :headers="headers" :items="items" item-value="idReservation" >
             <template v-slot:[`item.select`]="{ item }">                                  <!-- Revisar v-slot -->
-              <v-checkbox-btn @click="item.select = !item.select"></v-checkbox-btn>
+              <v-checkbox-btn @click="addDeleteReservetion(item)"></v-checkbox-btn>
             </template>
           </v-data-table>
       </div>
-      <v-btn text="Eliminar Reserva" color="surface-variant"></v-btn>
+      <v-btn text="Eliminar Reserva" color="surface-variant" @click="deleteReservetion"></v-btn>
     </div>
   </v-main>
 </template>
 
 <script>
 import SearchRoom from '@/components/searchRoom.vue'
-let roomsInfo = JSON.parse(localStorage.getItem('roomsInfo'))
-let roomsReserved = JSON.parse(localStorage.getItem('roomsReserved'))
 
 export default{
   components:{
@@ -26,7 +24,8 @@ export default{
   props:['changeFormat'],
   data(){
     return{
-      dataSearch:{name:'',capacity:null, date: this.$store.state.now},
+      listIdReservationToDelete:[],
+      dataSearch:{name:'',capacity:null, date: this.$store.getters.getDate},
       //Tabla
       headers: [
         {title:'Reservante', value: 'name'},
@@ -39,11 +38,25 @@ export default{
       ],
     }
   },
+  methods:{
+    deleteReservetion(){
+      this.$store.dispatch('deleteReservationAction',this.listIdReservationToDelete)
+    },
+    addDeleteReservetion(reservation){
+      if(!reservation.select){
+        this.listIdReservationToDelete.push(reservation.id)
+      }else{
+        this.listIdReservationToDelete = this.listIdReservationToDelete.filter(item => item != reservation.id)
+      }
+      reservation.select= !reservation.select
+    }
+  },
   computed:{
     items(){
+      console.log(this.$store.getRoomsReserved)
       //Creo un nuevo array agregando propiedades a los objetos
-      let newInfo = roomsReserved.map(reservacion => {
-        let room = roomsInfo.find(sala => sala.id === reservacion.id)
+      let newInfo = this.$store.getters.getRoomsReserved.map(reservacion => {
+        let room = this.$store.getters.getRoomsInfo.find(sala => sala.id === reservacion.id)
         reservacion.nameRoom = room.name
         reservacion.capacity = room.capacity
         reservacion.timeTotal= `${reservacion.timeInit}-${reservacion.timeEnd}`
@@ -62,6 +75,7 @@ export default{
           let date = this.changeFormat(this.dataSearch.date)
           newInfo = newInfo.filter((item) => item.date === date)
         }
+        console.log(newInfo)
         return newInfo
       }   
     }

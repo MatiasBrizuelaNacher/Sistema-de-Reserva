@@ -11,7 +11,7 @@
                 <v-text-field :label="labelCapacity" v-model="data.capacity" variant="solo" type="number" ></v-text-field>
               </v-col>
               <v-col cols="2">
-                <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar"></v-date-input>
+                <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar" :min="$store.getters.getDate"></v-date-input>
               </v-col>
               <v-col cols="2">
                 <v-text-field variant="solo" v-model="data.timeInit" :active="menu" :label="labelTimeInit" prepend-inner-icon="mdi-clock-time-four-outline" readonly :disabled="enableTimePicker">
@@ -80,7 +80,7 @@ export default{
   methods:{
       cleanData(){
       if(this.enableTime){
-        this.data = { name: '', capacity: null, date: this.$store.state.now, timeInit:this.$store.state.now.getHours() +":00", timeEnd: (this.$store.state.now.getHours()+1) +":00"}
+        this.data = { name: '', capacity: null, date: this.$store.getters.getDate, timeInit:this.$store.getters.getDate.getHours() +":00", timeEnd: (this.$store.getters.getDate.getHours()+1) +":00"}
       }else{
         this.data = { name: '', capacity: null, date:null}
       }      
