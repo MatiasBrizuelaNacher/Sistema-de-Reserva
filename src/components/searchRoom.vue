@@ -11,13 +11,13 @@
                 <v-text-field :label="labelCapacity" v-model="data.capacity" variant="solo" type="number" ></v-text-field>
               </v-col>
               <v-col cols="2">
-                <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar" :min="$store.getters.getDate"></v-date-input>
+                <v-date-input :label="labelDate" v-model="data.date" variant="solo" prepend-icon="" prepend-inner-icon="$calendar"></v-date-input>
               </v-col>
               <v-col cols="2">
                 <v-text-field variant="solo" v-model="data.timeInit" :active="menu" :label="labelTimeInit" prepend-inner-icon="mdi-clock-time-four-outline" readonly :disabled="enableTimePicker">
                   <v-menu v-model="menu" :close-on-content-click="false" activator="parent" transition="scale-transition">
                     <v-card>
-                      <v-time-picker v-model="timeInit" full-width format="24hr"></v-time-picker>
+                      <v-time-picker v-model="timeInit" full-width format="24hr" min="06:00" max="21:00"></v-time-picker>
                       <v-card-actions>
                         <v-spacer/>
                         <v-btn @click="close" :disabled="enableBtn" variant="text" >Cancelar</v-btn>
@@ -95,12 +95,23 @@ export default{
       if(this.timeInit !== ''){
         this.data.timeInit=this.timeInit
         const [hours,minutes] = this.data.timeInit.split(':').map(Number)
-        this.data.timeEnd= `${hours+1}:${minutes}`
-      } 
+        if (minutes >=10 && hours >=10) {
+          this.data.timeEnd= `${hours+1}:${minutes}`
+        }else{
+          if (minutes <=10 && hours >=10) {
+            this.data.timeEnd= `${hours+1}:0${minutes}`
+          }
+          if (minutes >=10 && hours <=10) {
+            this.data.timeEnd= `0${hours+1}:${minutes}`
+          }
+          if (minutes <=10 && hours <=10) {
+            this.data.timeEnd= `0${hours+1}:0${minutes}`
+          }
+        }
+      }  
       if(this.timeEnd !== '') this.data.timeEnd=this.timeEnd
       this.close()
     },
-
   },
   computed:{
     data:{
@@ -124,7 +135,7 @@ export default{
     },
     minTime() {
       const [hours,minutes] = this.data.timeInit.split(':').map(Number)
-      return `${hours}:${minutes+30}`
+      return `${hours+1}:${minutes}`
     },
   }
 }

@@ -34,9 +34,15 @@ export default{
     };
   },
   computed: {
+    prueba:{
+      get(){
+        return this.$store.state.prueba
+      },
+      set(value){
+        this.$store.state.prueba = value
+      }
+    },
     items() {
-      //console.log(this.$store.getters.getRoomsInfo)
-      //console.log(this.$store.getters.getRoomsReserved)
       let newInfo = []
       this.$store.getters.getRoomsInfo.forEach((item) => {
         // Cambio el formato
@@ -47,14 +53,13 @@ export default{
         const timeEndTotal = this.changeTimeNumber(this.dataSearch.timeEnd)
 
         // Busca una coincidencia entre el nombre, fecha y hora de las salas reservadas con la del item
-        const isReserved = this.$store.getters.getRoomsReserved.some((reserva) => {
+        const isReserved = this.$store.state.roomsReserved.some((reserva) => {
           const timeInitTotalReserved = this.changeTimeNumber(reserva.timeInit)
           const timeEndTotalReserved = this.changeTimeNumber(reserva.timeEnd)
-          return (reserva.nameRoom === item.name && reserva.date === date && timeInitTotal < timeEndTotalReserved && timeEndTotal > timeInitTotalReserved)
+          return (reserva.idRoom === item.id && reserva.date === date && timeInitTotal < timeEndTotalReserved && timeEndTotal > timeInitTotalReserved)
         })
 
         item.state = isReserved ? "Ocupado" : "Disponible"
-        //console.log(isReserved)
         newInfo.push(item)
       })
 
@@ -68,7 +73,6 @@ export default{
         if (this.dataSearch.capacity !== null) {
           newInfo = newInfo.filter((item) => item.capacity >= this.dataSearch.capacity)
         }
-        console.log(newInfo)
         return newInfo
       }
     },

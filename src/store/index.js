@@ -23,7 +23,8 @@ export default createStore({
       localStorage.setItem('roomsReserved', JSON.stringify(state.roomsReserved))
     },
     deleteReservation(state, newRoomsReserved) {
-      localStorage.setItem('roomsReserved', JSON.stringify(newRoomsReserved))
+      state.roomsReserved = newRoomsReserved
+      localStorage.setItem('roomsReserved', JSON.stringify(state.roomsReserved))
     }
   },
   actions: {

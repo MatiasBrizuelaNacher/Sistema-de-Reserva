@@ -53,7 +53,6 @@ export default{
   },
   computed:{
     items(){
-      console.log(this.$store.getRoomsReserved)
       //Creo un nuevo array agregando propiedades a los objetos
       let newInfo = this.$store.getters.getRoomsReserved.map(reservacion => {
         let room = this.$store.getters.getRoomsInfo.find(sala => sala.id === reservacion.id)
@@ -75,7 +74,6 @@ export default{
           let date = this.changeFormat(this.dataSearch.date)
           newInfo = newInfo.filter((item) => item.date === date)
         }
-        console.log(newInfo)
         return newInfo
       }   
     }

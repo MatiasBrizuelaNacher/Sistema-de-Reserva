@@ -61,10 +61,9 @@ export default {
             if (this.salaSeleccionada !== '' && this.firtName!=='' && this.lastName!=='' && this.email!=='') {
                 let room = this.$store.getters.getRoomsInfo.find(room => room.name === this.salaSeleccionada)
                 let newReservation = {idRoom:room.id,name:`${this.firtName}, ${this.lastName}`, email: this.email,date:this.changeFormat(this.info.date), timeInit:this.info.timeInit,timeEnd:this.info.timeEnd}
-                console.log(newReservation)
                 this.$store.dispatch('addReservationAction',newReservation)
-                this.cleanInfo()
                 this.dialog = false
+                this.cleanInfo()
             }
         },
         cleanInfo(){
