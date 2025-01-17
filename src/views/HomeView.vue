@@ -35,8 +35,8 @@ export default{
   },
   computed: {
     items() {
-      console.log(this.$store.getters.getRoomsInfo)
-      console.log(this.$store.getters.getRoomsReserved)
+      //console.log(this.$store.getters.getRoomsInfo)
+      //console.log(this.$store.getters.getRoomsReserved)
       let newInfo = []
       this.$store.getters.getRoomsInfo.forEach((item) => {
         // Cambio el formato
@@ -54,7 +54,7 @@ export default{
         })
 
         item.state = isReserved ? "Ocupado" : "Disponible"
-        console.log(isReserved)
+        //console.log(isReserved)
         newInfo.push(item)
       })
 

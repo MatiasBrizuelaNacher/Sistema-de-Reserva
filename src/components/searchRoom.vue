@@ -20,7 +20,7 @@
                       <v-time-picker v-model="timeInit" full-width format="24hr"></v-time-picker>
                       <v-card-actions>
                         <v-spacer/>
-                        <v-btn @click="closeCancel" :disabled="enableBtn" variant="text" >Cancelar</v-btn>
+                        <v-btn @click="close" :disabled="enableBtn" variant="text" >Cancelar</v-btn>
                         <v-btn @click="closeOk" :disabled="enableBtn" variant="text">OK</v-btn>
                       </v-card-actions>
                     </v-card>
@@ -28,13 +28,13 @@
                 </v-text-field>
               </v-col>
               <v-col cols="2">
-                <v-text-field variant="solo" v-model="data.timeEnd" :active="menu2" :label="labelTimeEnd" prepend-inner-icon="mdi-clock-time-four-outline" :disabled="enableTimePicker">
+                <v-text-field variant="solo" v-model="data.timeEnd" :active="menu2" :label="labelTimeEnd" prepend-inner-icon="mdi-clock-time-four-outline" :disabled="enableTimePicker" readonly>
                   <v-menu v-model="menu2" :close-on-content-click="false" activator="parent" transition="scale-transition">
                     <v-card>
-                      <v-time-picker v-model="timeEnd" full-width format="24hr"></v-time-picker>
+                      <v-time-picker v-model="timeEnd" full-width format="24hr" :min="minTime"></v-time-picker>
                       <v-card-actions>
                         <v-spacer/>
-                        <v-btn @click="closeCancel" :disabled="enableBtn" variant="text">Cancelar</v-btn>
+                        <v-btn @click="close" :disabled="enableBtn" variant="text">Cancelar</v-btn>
                         <v-btn @click="closeOk" :disabled="enableBtn" variant="text">OK</v-btn>
                       </v-card-actions>
                     </v-card>
@@ -85,20 +85,22 @@ export default{
         this.data = { name: '', capacity: null, date:null}
       }      
     },
-    closeCancel(){
+    close(){
       this.timeInit=''
       this.timeEnd=''
       this.menu=false
       this.menu2=false
     },
     closeOk(){
-      if(this.timeInit !== '') this.data.timeInit=this.timeInit
+      if(this.timeInit !== ''){
+        this.data.timeInit=this.timeInit
+        const [hours,minutes] = this.data.timeInit.split(':').map(Number)
+        this.data.timeEnd= `${hours+1}:${minutes}`
+      } 
       if(this.timeEnd !== '') this.data.timeEnd=this.timeEnd
-      this.timeInit=''
-      this.timeEnd=''
-      this.menu=false
-      this.menu2=false
+      this.close()
     },
+
   },
   computed:{
     data:{
@@ -106,6 +108,7 @@ export default{
         return this.modelValue
       },
       set(value){
+
         this.$emit('update:modelValue', value)
       }
     },
@@ -118,7 +121,11 @@ export default{
       get(){
         return !this.enableTime
       }
-    }
+    },
+    minTime() {
+      const [hours,minutes] = this.data.timeInit.split(':').map(Number)
+      return `${hours}:${minutes+30}`
+    },
   }
 }
 
