@@ -1,16 +1,19 @@
 <template>
   <v-main>
-      <div class="container">
-        <SearchRoom v-model="dataSearch" :enableTime="false"></SearchRoom>
-        <div class="containerTable">
-            <v-data-table :headers="headers" :items="items" item-value="idReservation" >
+    <img class="imagen" :src="require('../assets/imagen/Study-room-books_2880x1800.jpg')">
+    <div class="divSearchRoom">
+      <SearchRoom v-model="dataSearch" :enableTime="false" ></SearchRoom>
+    </div>
+    <div class="containerTable">
+      <div>
+        <v-data-table :headers="headers" :items="items" item-value="idReservation" >
               <template v-slot:[`item.select`]="{ item }">                                  <!-- Revisar v-slot -->
                 <v-checkbox-btn @click="addDeleteReservetion(item)"></v-checkbox-btn>
               </template>
             </v-data-table>
-        </div>
-        <v-btn text="Eliminar Reserva" color="surface-variant" @click="deleteReservetion"></v-btn>
+            <v-btn text="Eliminar Reserva" color="surface-variant" @click="deleteReservetion"></v-btn>
       </div>
+    </div>
   </v-main>
 </template>
 
@@ -82,14 +85,24 @@ export default{
 </script>
 
 <style>
-  .container{
-    justify-content: center;
-    align-items: center;
-    margin: 100px;
-    margin-top: 20px;
-  }
-  .containerTable{
-    padding-top: 1%;
-  }
+.imagen{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  filter: blur(1px);
+}
+
+.divSearchRoom{
+  position: relative;
+  top: -80px;
+  left: 50%; /* Mueve el elemento hasta el 50% del ancho del contenedor */
+  transform: translateX(-50%);
+  width: 90%;
+}
+
+.containerTable{
+  height: 700px;
+  margin: -3% 10% 3% 10%;
+}
 
 </style>

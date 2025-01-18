@@ -5,7 +5,7 @@
           <v-container fluid>
             <v-row>
               <v-col cols="3">
-                <v-text-field :label="labelName" v-model="data.name" variant="solo" ></v-text-field>
+                <v-text-field :label="labelName" v-model="data.name" variant="solo"></v-text-field>
               </v-col>
               <v-col cols="2">
                 <v-text-field :label="labelCapacity" v-model="data.capacity" variant="solo" type="number" ></v-text-field>

@@ -17,7 +17,7 @@
                 </v-row>
                 <v-row>
                     <v-col cols="12">
-                        <v-text-field variant="solo" label="Email" placeholder="johndoe@gmail.com" type="email" v-model="email" :rules="[required]"></v-text-field>
+                        <v-text-field variant="solo" label="Email" placeholder="johndoe@gmail.com" type="email" v-model="email" :rules="[required, emailValid]"></v-text-field>
                     </v-col>
                 </v-row>
                 <v-row>
@@ -56,6 +56,10 @@ export default {
         },
         required (value) {
             return !!value || '*Campo Requerido*'
+        },
+        emailValid (value) {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Correo Invalido'
         },
         addReservation(){
             if (this.salaSeleccionada !== '' && this.firtName!=='' && this.lastName!=='' && this.email!=='') {

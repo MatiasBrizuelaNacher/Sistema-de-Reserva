@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar scroll-behavior="hide" scroll-threshold="0">
+    <v-app-bar scroll-behavior="fully-hide" scroll-threshold="10">
       <v-app-bar-title class="TitlePag" >Sistema de Reservas</v-app-bar-title>
       <router-link to='/'>
         <button class="btnTopBar">Home</button>
@@ -15,6 +15,7 @@
 </template>
 
 <style>
+
 .btnTopBar{
   height: 100%;
   padding: 10px 16px;

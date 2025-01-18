@@ -1,19 +1,15 @@
 <template>
   <v-main>
-    <div class="main">
-      <div class="containerSearRoom">
-        <div class="divSearchRoom">
-          <SearchRoom v-model="dataSearch" :enableTime="true" ></SearchRoom>
-        </div>
-      </div>
+    <img class="imagen" :src="require('../assets/imagen/Study-room-books_2880x1800.jpg')">
+    <div class="divSearchRoom">
+      <SearchRoom v-model="dataSearch" :enableTime="true" ></SearchRoom>
+    </div>
     <div class="containerTable">
       <div>
         <v-data-table :headers="headers" :items="items" item-value="id" ></v-data-table>
         <ReservationForm :items="items" :info="dataSearch" :changeFormat="changeFormat"></ReservationForm>
       </div>
     </div>
-  </div>
-    
   </v-main> 
 </template>
 
@@ -86,28 +82,24 @@ export default{
 </script>
 
 <style>
-  .divSearchRoom{
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -30%;
+.imagen{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  filter: blur(1px);
+}
 
-  }
+.divSearchRoom{
+  position: relative;
+  top: -80px;
+  left: 50%; /* Mueve el elemento hasta el 50% del ancho del contenedor */
+  transform: translateX(-50%);
+  width: 90%;
+}
 
-  .containerTable{
-    justify-content: center;
-    align-items: center;
-    margin: 2% 10% 5% 10%;
-    padding-top: 1%;
-  }
-
-  .main{
-    background-color: rgb(197, 197, 197);
-  }
-
-  .containerSearRoom{
-    padding: 100px;
-    padding-top: 10%;
-    background-image: url(../assets/imagen/Study-room-books_2880x1800.jpg);
-  }
+.containerTable{
+  height: 700px;
+  margin: -3% 10% 3% 10%;
+}
 </style>
 
