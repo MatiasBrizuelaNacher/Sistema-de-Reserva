@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto" id="card" elevation="5" >
+    <v-card class="mx-auto" id="card" elevation="5"  >
       <v-card-title class="custom-title">Buscar Sala</v-card-title>
         <v-form>
           <v-container fluid>

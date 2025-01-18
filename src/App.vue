@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar>
-      <v-app-bar-title class="TitlePag">Sistema de Reservas</v-app-bar-title>
+    <v-app-bar scroll-behavior="hide" scroll-threshold="0">
+      <v-app-bar-title class="TitlePag" >Sistema de Reservas</v-app-bar-title>
       <router-link to='/'>
         <button class="btnTopBar">Home</button>
       </router-link>
@@ -30,7 +30,6 @@
   font-size: 20px; 
   font-weight: bold;
 }
-
 </style>
 <script>
 

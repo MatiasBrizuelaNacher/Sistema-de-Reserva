@@ -1,14 +1,19 @@
 <template>
   <v-main>
-    <div class="container">
+    <div class="main">
+      <div class="containerSearRoom">
+        <div class="divSearchRoom">
+          <SearchRoom v-model="dataSearch" :enableTime="true" ></SearchRoom>
+        </div>
+      </div>
+    <div class="containerTable">
       <div>
-        <SearchRoom v-model="dataSearch" :enableTime="true"></SearchRoom>
-      </div>
-      <div class="containerTable">
         <v-data-table :headers="headers" :items="items" item-value="id" ></v-data-table>
+        <ReservationForm :items="items" :info="dataSearch" :changeFormat="changeFormat"></ReservationForm>
       </div>
-      <ReservationForm :items="items" :info="dataSearch" :changeFormat="changeFormat"></ReservationForm>
     </div>
+  </div>
+    
   </v-main> 
 </template>
 
@@ -81,15 +86,28 @@ export default{
 </script>
 
 <style>
-  .container{
+  .divSearchRoom{
     justify-content: center;
     align-items: center;
-    margin: 100px;
-    margin-top: 20px;
+    margin-bottom: -30%;
+
   }
+
   .containerTable{
+    justify-content: center;
+    align-items: center;
+    margin: 2% 10% 5% 10%;
     padding-top: 1%;
   }
-</style>
 
+  .main{
+    background-color: rgb(197, 197, 197);
+  }
+
+  .containerSearRoom{
+    padding: 100px;
+    padding-top: 10%;
+    background-image: url(../assets/imagen/Study-room-books_2880x1800.jpg);
+  }
+</style>
 

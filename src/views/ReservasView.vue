@@ -1,16 +1,16 @@
 <template>
   <v-main>
-    <div class="container">
-      <SearchRoom v-model="dataSearch" :enableTime="false"></SearchRoom>
-      <div class="containerTable">
-          <v-data-table :headers="headers" :items="items" item-value="idReservation" >
-            <template v-slot:[`item.select`]="{ item }">                                  <!-- Revisar v-slot -->
-              <v-checkbox-btn @click="addDeleteReservetion(item)"></v-checkbox-btn>
-            </template>
-          </v-data-table>
+      <div class="container">
+        <SearchRoom v-model="dataSearch" :enableTime="false"></SearchRoom>
+        <div class="containerTable">
+            <v-data-table :headers="headers" :items="items" item-value="idReservation" >
+              <template v-slot:[`item.select`]="{ item }">                                  <!-- Revisar v-slot -->
+                <v-checkbox-btn @click="addDeleteReservetion(item)"></v-checkbox-btn>
+              </template>
+            </v-data-table>
+        </div>
+        <v-btn text="Eliminar Reserva" color="surface-variant" @click="deleteReservetion"></v-btn>
       </div>
-      <v-btn text="Eliminar Reserva" color="surface-variant" @click="deleteReservetion"></v-btn>
-    </div>
   </v-main>
 </template>
 
@@ -82,7 +82,7 @@ export default{
 </script>
 
 <style>
-    .container{
+  .container{
     justify-content: center;
     align-items: center;
     margin: 100px;
@@ -91,4 +91,5 @@ export default{
   .containerTable{
     padding-top: 1%;
   }
+
 </style>
